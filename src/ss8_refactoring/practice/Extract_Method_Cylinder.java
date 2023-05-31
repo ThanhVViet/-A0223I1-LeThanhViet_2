@@ -6,6 +6,7 @@ public class Extract_Method_Cylinder {
         double perimeter = getPerimeter(radius);
         double volume = perimeter * height + 2 * baseArea;
         return volume;
+
     }
 
     private static double getPerimeter(int radius) {
