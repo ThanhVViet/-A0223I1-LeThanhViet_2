@@ -1,12 +1,9 @@
-package ss9_mvc.service;
-
-
-import ss9_mvc.model.Student;
+package ss9.service;
 
 public interface IStudentService {
     void display();
-    void save(Student student);
+    void add();
+    void edit();
     void del();
-
     int find(int id);
 }

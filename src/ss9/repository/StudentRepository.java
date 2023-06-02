@@ -1,11 +1,8 @@
-package ss9_mvc.repository;
+package ss9.repository;
+import ss9.model.Student;
 
-import ss9_mvc.model.Student;
 
-import java.util.Arrays;
-import java.util.Optional;
-
-public class StudentRepository implements IStudentRepository {
+public class StudentRepository implements IStudentRepository{
     static Student[] students = new Student[100];
     Student student = new Student();
     static int size = 0;
@@ -15,11 +12,6 @@ public class StudentRepository implements IStudentRepository {
         students[1] = new Student(2, "Nguyễn Văn B", 5.6);
         students[2] = new Student(3, "Nguyễn Văn C", 6.7);
         size = 3;
-    }
-
-    @Override
-    public Optional<Student> findById(int id) {
-        return Arrays.stream(students).filter(e -> e.getId() == id).findFirst();
     }
 
     @Override
@@ -36,6 +28,10 @@ public class StudentRepository implements IStudentRepository {
     public int addSize() {
         return size++;
     }
+    @Override
+    public int setSize() {
+        return size--;
+    }
 
     @Override
     public int find(int id) {
@@ -47,8 +43,7 @@ public class StudentRepository implements IStudentRepository {
                 break;
             }
         }
-
-        return index;
+        return z;
     }
 
     @Override
@@ -78,23 +73,4 @@ public class StudentRepository implements IStudentRepository {
         return false;
     }
 
-    @Override
-    public int setSize() {
-        return size--;
-    }
-
-    @Override
-    public void save(Student student) {
-        if(student.getId() > 0){
-            for (int i = 0; i < students.length; i++) {
-                if(students[i].getId() == student.getId()){
-                    students[i] = student;
-                    break;
-                }
-            }
-        }
-        else {
-            students[students.length] =student;
-        }
-    }
 }

@@ -1,17 +1,13 @@
-package ss9_mvc.View;
+package ss9.controller;
 
-import ss9_mvc.controller.StudentController;
-import ss9_mvc.model.Student;
+import ss9.service.IStudentService;
+import ss9.service.StudentService;
 
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        StudentController sc = new StudentController();
-        displayMenu();
-    }
-
-    public static void displayMenu() {
+public class StudentController {
+    private IStudentService iStudentService = new StudentService();
+    public void displayMenu() {
         Scanner scanner = new Scanner(System.in);
 
         int choose;
@@ -29,22 +25,19 @@ public class Main {
 
             switch (choose) {
                 case 1:
-                    System.out.println();
-                    Student student = new Student();
-             //       iStudentService.save(student);
+                    iStudentService.add();
                     break;
                 case 2:
-              //      iStudentService.display();
+                    iStudentService.display();
                     break;
                 case 3:
-                 //   iStudentService.save();
-//                    System.out.println("Bạn đang chọn chức năng Sửa");
-//                    iStudentService.edit();
+                    System.out.println("Bạn đang chọn chức năng Sửa");
+                    iStudentService.edit();
                     break;
                 case 4:
                     System.out.println("Bạn đang chọn chức năng Xóa");
-//                    iStudentService.del();
-//                    iStudentService.display();
+                    iStudentService.del();
+                    iStudentService.display();
                     break;
             }
         } while (choose >= 1 && choose <= 4);

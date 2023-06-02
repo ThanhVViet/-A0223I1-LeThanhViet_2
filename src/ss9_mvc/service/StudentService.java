@@ -7,70 +7,56 @@ import ss9_mvc.repository.StudentRepository;
 import java.util.*;
 
 public class StudentService implements IStudentService {
-    private IStudentRepository iStudentRepository = new StudentRepository();
+    private IStudentRepository studentRepository = new StudentRepository();
     Scanner scanner = new Scanner(System.in);
 
     public int find(int id) {
-        Student[] students = iStudentRepository.list();
-        int index = -1;
-        int z;
-        for (z = 0; z < iStudentRepository.getSize(); z++) {
-            if (id == students[z].getId()) {
-                index = z;
-                break;
-            }
-        }
-        return z;
+       return studentRepository.find(id);
     }
 
     @Override
     public void display() {
-        Student[] students = iStudentRepository.list();
-        for (int i = 0; i < iStudentRepository.getSize(); i++) {
+        Student[] students = studentRepository.list();
+        for (int i = 0; i < studentRepository.getSize(); i++) {
             System.out.printf("Thông tin sinh viên thứ %d:\n", i + 1);
             System.out.println(students[i]);
         }
     }
 
     @Override
-    public void add() {
-        System.out.println("Nhập vào id: ");
-        int id = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập vào tên học sinh: ");
-        String name = scanner.nextLine();
-        System.out.println("Nhập điểm số: ");
-        double score = Double.parseDouble(scanner.nextLine());
-        Student[] students = iStudentRepository.list();
-        students[iStudentRepository.addSize()] = new Student(id, name, score);
+    public void save(Student student) {
+        studentRepository.save(student);
     }
 
-    @Override
-    public void edit() {
-        System.out.println("Nhập vào id bạn muốn sửa thông tin: ");
-        int id1 = Integer.parseInt(scanner.nextLine());
-        Student[] students = iStudentRepository.list();
-        System.out.println("Nhập vào tên mới học sinh: ");
-        String name1 = scanner.nextLine();
-        System.out.println("Nhập điểm mới: ");
-        double score1 = Double.parseDouble(scanner.nextLine());
-        students[find(id1)] = new Student(id1, name1, score1);
-//        if (iStudentRepository.find1(id1)) {
-//
-//        } else {
-//            System.out.println("Not Found");
-//        }
-    }
+//        studentRepository.save(student);
+
+//    @Override
+//    public void edit() {
+//        System.out.println("Nhập vào id bạn muốn sửa thông tin: ");
+//        int id1 = Integer.parseInt(scanner.nextLine());
+//        Student[] students = studentRepository.list();
+//        System.out.println("Nhập vào tên mới học sinh: ");
+//        String name1 = scanner.nextLine();
+//        System.out.println("Nhập điểm mới: ");
+//        double score1 = Double.parseDouble(scanner.nextLine());
+//        students[find(id1)] = new Student(id1, name1, score1);
+////        if (iStudentRepository.find1(id1)) {
+////
+////        } else {
+////            System.out.println("Not Found");
+////        }
+//    }
 
     @Override
     public void del() {
         System.out.println("Nhập vào id bạn muốn xoá thông tin: ");
         int iddel = Integer.parseInt(scanner.nextLine());
-        Student[] students = iStudentRepository.list();
-        for (int i = find(iddel); i < iStudentRepository.getSize() - 1; i++) {
+        Student[] students = studentRepository.list();
+        for (int i = find(iddel); i < studentRepository.getSize() - 1; i++) {
             students[i] = students[i + 1];
         }
-        students[iStudentRepository.getSize() - 1] = null;
-        iStudentRepository.setSize();
+        students[studentRepository.getSize() - 1] = null;
+        studentRepository.setSize();
         System.out.println("Successful");
         //iStudentRepository.delete(iddel);
     }

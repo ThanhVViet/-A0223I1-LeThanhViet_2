@@ -1,6 +1,5 @@
-package ss9_mvc.model;
+package ss9.model;
 
-//public record Student(int id, String name, double score){}
 public class Student {
     private int id;
     private String name;
