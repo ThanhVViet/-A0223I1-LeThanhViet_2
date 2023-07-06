@@ -1,13 +1,12 @@
 package ss9_mvc.View;
 
-import ss9_mvc.controller.StudentController;
+
 import ss9_mvc.model.Student;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        StudentController sc = new StudentController();
         displayMenu();
     }
 
